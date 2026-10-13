@@ -83,9 +83,15 @@ All code is in `Source/VerseGallery/`.
 
 Select **GalleryBuilder** in the Outliner. In the Details panel you'll find:
 
-- **Local Light Scale / Directional Light Scale**: brightness of the lamps and sun
-- **Sky Light Intensity**: overall ambient light
+- **Local Light Scale / Directional Light Scale**: brightness of the ceiling lamps and the sun
+- **Local Light Saturation**: how purple the lamps are (0 = white, 1 = Unity's full purple). Unity's baked lighting made the room read white, so the default keeps only a slight tint.
+- **Local Light Range Scale**: how far the lamps' light reaches past Unity's range, so it gets to the walls
+- **Exposure**: brightens or darkens the whole picture (each -1 halves it)
+- **Ambient Fill**: even fill light on every surface, like Unity's ambient lighting
+- **Sky Light Intensity**: brightness of the sky's light
 - **Rebuild**: a button that re-reads `gallery.json` and rebuilds the scene
+
+When the editor opens, the viewport camera moves to the intro tour's first shot (the doorway) so you start inside the gallery.
 
 Book text and links are in `GalleryData/gallery.json` under `"books"`. Edit them, then press **Rebuild**.
 
@@ -113,6 +119,7 @@ The Output Log prints a line like `LogGalleryIntroTour: 34.2s -> Feedback Site` 
 
 | Problem | Fix |
 |---|---|
+| Opening a fresh GitHub download compiles C++ first | Normal: compiled files aren't stored in the repository. It takes a few minutes and needs the Visual Studio setup below. |
 | "Could not be compiled. Try rebuilding from source manually." | Visual Studio 2022 with the **Game development with C++** workload isn't installed. Install it, then open the `.uproject` again. |
 | Everything is plain colored with no textures | The setup script didn't run. Use **Tools > Execute Python Script...** with `Content/Python/gallery_setup.py`. |
 | The viewport is empty after opening | Open `Content/Maps/VerseGallery`, or select GalleryBuilder and press **Rebuild**. |
